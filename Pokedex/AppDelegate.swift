@@ -12,6 +12,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if LocalStorageManager.shared.getData(key: StringSources.shared.pokemonKey) == nil {
+            networkManager.requestGetAPI(urlPath: StringSources.shared.pokemonPath,
+                                     keyToSave: StringSources.shared.pokemonKey)
+        }
         return true
     }
 
