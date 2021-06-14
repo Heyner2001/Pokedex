@@ -12,9 +12,18 @@ let homeViewController = HomeViewController()
 
 class HomeViewController: UIViewController {
     
+    let homeView = HomeView()
+    
     init() {
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = .white
+        
+        view.addSubview(homeView)
+        setUpConstraints()
+    }
+    
+    private func setUpConstraints() {
+        homeView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
     
     required init?(coder: NSCoder) {
