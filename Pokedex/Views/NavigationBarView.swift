@@ -42,15 +42,15 @@ class NavigationBarView: UIView {
     private let searchButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .clear
-        button.setImage(UIImage(named: "static_ic_search")?.withRenderingMode(.alwaysTemplate),
-                        for: .normal)
+        button.setImage(UIImage(named: StringSources.shared.navBarImage)?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = .white
         return button
     }()
     
-    init() {
+    init(showSearchButton: Bool = true) {
         super.init(frame: .zero)
         backgroundColor = UIColor(red: 0.87, green: 0.25, blue: 0.25, alpha: 1)
+        searchButton.isHidden = !showSearchButton
         
         addSubview(contentView)
         setUpContraints()

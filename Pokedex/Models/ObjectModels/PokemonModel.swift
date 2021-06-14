@@ -2,32 +2,15 @@
 //  PokemonModel.swift
 //  Pokedex
 //
-//  Created by Heyner Rodriguez on 13/06/21.
+//  Created by Heyner Rodriguez on 14/06/21.
 //
 
 import Foundation
 
-struct AllPokemons: Decodable {
-    let count: Int
-    let next: String?
-    let previous: String?
-    let results: [Pokemon]
-    
-    enum CodingKeys: String, CodingKey {
-        case count, next, previous, results
-    }
-}
-
-struct Pokemon: Decodable {
+struct Pokemon {
     let name: String
-    let url: String
-    
-    enum CodingKeys: String, CodingKey {
-        case name, url
-    }
+    let image: String
 }
-
-var allPokemons: AllPokemons? = nil 
 
 class PokemonModel {
     

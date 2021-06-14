@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "search.png",
+      "filename" : "pokemon-background.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "search@2x.png",
+      "filename" : "pokemon-background@2x.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "search@3x.png",
+      "filename" : "pokemon-background@3x.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }

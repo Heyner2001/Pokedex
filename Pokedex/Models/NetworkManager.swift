@@ -18,24 +18,36 @@ class NetworkManager {
     
     private struct requestError: Swift.Error {}
     
-    func requestGetAPI(urlPath: String, keyToSave: String) {
-        requestGet(urlPath: urlPath, keyToSave: keyToSave)
+    func requestGetAPI(urlPath: String, indexSection: Int) {
+        requestGet(urlPath: urlPath)
             .observe(on: serialSchedule)
             .retry(3)
             .subscribe(on: concurrentSchedule)
             .map { data in
-                LocalStorageManager.shared.saveData(data: data, key: keyToSave)
-                
                 do {
-                    let results = try JSONDecoder().decode(AllPokemons.self, from: data)
-                    allPokemons = results
+                    switch indexSection {
+                    case 0:
+                        allPokemons = try JSONDecoder().decode(AllPokemons.self, from: data)
+                        break
+                    case 1:
+                        break
+                    case 2:
+                        break
+                    case 3:
+                        break
+                    case 4:
+                        break
+                    default: break
+                    }
+                    
+                    
                 } catch { print(error.localizedDescription) }
             }
             .subscribe(onCompleted: {})
             .disposed(by: disposeBag)
     }
     
-    private func requestGet(urlPath: String, keyToSave: String) -> Observable<Data> {
+    private func requestGet(urlPath: String) -> Observable<Data> {
         return Observable.create { observable in
             Alamofire.request(StringSources.shared.urlBase + urlPath ,method: .get , encoding: URLEncoding.default)
                 .validate(statusCode: 200 ..< 300)

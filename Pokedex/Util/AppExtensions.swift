@@ -66,4 +66,8 @@ public extension UIApplication {
     static var statusBarHeight: CGFloat {
         return sharedKeyWindow.windowScene?.statusBarManager?.statusBarFrame.height ?? .zero
     }
+    
+    static var bottomSafeInset: CGFloat {
+        return sharedKeyWindow.safeAreaInsets.bottom 
+    }
 }
