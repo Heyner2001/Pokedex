@@ -10,6 +10,7 @@ import SnapKit
 
 class PokemonSectionView: UIView {
     
+    var volatilPokemonsData = allPokemons?.results
     private let navBar = NavigationBarView(viewTitle: StringSources.shared.sectionTitles[0])
     private lazy var backButton: UIButton = {
         let button = UIButton()
@@ -20,7 +21,7 @@ class PokemonSectionView: UIView {
         return button
     }()
     
-    private lazy var pokemonsCollectionView: UICollectionView = {
+    lazy var pokemonsCollectionView: UICollectionView = {
         let flow = UICollectionViewFlowLayout()
         flow.scrollDirection = .vertical
         let collection = UICollectionView(frame: .zero, collectionViewLayout: flow)
@@ -62,14 +63,14 @@ class PokemonSectionView: UIView {
 
 extension PokemonSectionView: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return allPokemons?.results.count ?? 0
+        return volatilPokemonsData?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = pokemonsCollectionView.dequeueReusableCell(withReuseIdentifier: StringSources.shared.PokemonSectionCellKey, for: indexPath) as? PokemonSectionCell else {
             return UICollectionViewCell()
         }
-        guard let data = allPokemons?.results[indexPath.row] else { return UICollectionViewCell() }
+        guard let data = volatilPokemonsData?[indexPath.row] else { return UICollectionViewCell() }
         cell.setData(urlPokemon: data)
         return cell
     }

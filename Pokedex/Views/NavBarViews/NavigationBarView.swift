@@ -24,6 +24,7 @@ class NavigationBarView: UIView {
     init(showSearchButton: Bool = true, viewTitle: String) {
         super.init(frame: .zero)
         backgroundColor = UIColor(red: 0.87, green: 0.25, blue: 0.25, alpha: 1)
+        
         standardNavBar = StandardNavBar(showSearchButton: showSearchButton, viewTitle: viewTitle)
         standardNavBar?.searchButtonDelegate = self
         searchNavBar.backButtonDelegate = self

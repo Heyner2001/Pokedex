@@ -47,19 +47,19 @@ class NetworkManager {
                 
                 switch indexSection {
                 case 0:
-                    viewController = PokemonListViewController()
+                    viewController = pokemonListViewController
                     break
                 case 1:
-                    //            viewController = RegionsListViewController()
+                    //            viewController = regionsListViewController
                     break
                 case 2:
-                    //            viewController = BerriesListViewController()
+                    //            viewController = berriesListViewController
                     break
                 case 3:
-                    //            viewController = SkillsListViewController()
+                    //            viewController = skillsListViewController
                     break
                 case 4:
-                    //            viewController = PokeballsListViewController()
+                    //            viewController = pokeballsListViewController
                     break
                 default: break
                 }

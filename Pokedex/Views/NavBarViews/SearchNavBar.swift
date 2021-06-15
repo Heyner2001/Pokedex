@@ -46,7 +46,7 @@ class SearchNavBar: UIView {
         let input = UITextField()
         input.textColor = .black
         input.font = .setFont(.regular, .normal)
-//        input.addTarget(self, action: #selector((_:)), for: .editingChanged)
+        input.addTarget(self, action: #selector(pokemonSearchAction(_:)), for: .editingChanged)
         return input
     }()
     
@@ -75,6 +75,16 @@ class SearchNavBar: UIView {
     
     @objc private func backButtonAction() {
         backButtonDelegate?.backButtonAction()
+    }
+    
+    @objc private func pokemonSearchAction(_ textField: UITextField) {
+        let pokemonSection = pokemonListViewController.pokemonsSectionView
+        guard textField.text != "" else {
+            pokemonSection.volatilPokemonsData = allPokemons?.results
+            return
+        }
+        pokemonSection.volatilPokemonsData = allPokemons?.results.filter({ $0.name.lowercased().contains(textField.text?.lowercased() ?? "") })
+        pokemonSection.pokemonsCollectionView.reloadData()
     }
     
     required init?(coder: NSCoder) {

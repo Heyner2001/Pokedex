@@ -8,19 +8,20 @@
 import UIKit
 import SnapKit
 
+let pokemonListViewController = PokemonListViewController()
 class PokemonListViewController: UIViewController {
     
-    let pokemonsSectionview = PokemonSectionView()
+    let pokemonsSectionView = PokemonSectionView()
     
     init() {
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = .white
-        view.addSubview(pokemonsSectionview)
+        view.addSubview(pokemonsSectionView)
         setUpConstraints()
     }
     
     private func setUpConstraints() {
-        pokemonsSectionview.snp.makeConstraints { $0.edges.equalToSuperview() }
+        pokemonsSectionView.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
     
     required init?(coder: NSCoder) {
