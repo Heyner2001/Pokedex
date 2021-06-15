@@ -53,6 +53,7 @@ class SearchNavBar: UIView {
     init() {
         super.init(frame: .zero)
         backgroundColor = .clear
+        searchTextField.becomeFirstResponder()
         addSubview(contentStackView)
         setUpConstraints()
     }
