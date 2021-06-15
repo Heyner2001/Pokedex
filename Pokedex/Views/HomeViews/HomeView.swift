@@ -10,7 +10,7 @@ import SnapKit
 
 class HomeView: UIView {
     
-    let navBar = NavigationBarView(showSearchButton: false)
+    let navBar = NavigationBarView(showSearchButton: false, viewTitle: StringSources.shared.homeTitle)
     let navBarImage = UIImageView(image: UIImage(named: "pokedex"))
     
     lazy var sectionsTableView: UITableView = {
@@ -31,6 +31,7 @@ class HomeView: UIView {
     
     init() {
         super.init(frame: .zero)
+        backgroundColor = .white
         addSubview(navBar)
         addSubview(sectionsTableView)
         setUpConstraints()
@@ -55,14 +56,14 @@ class HomeView: UIView {
 
 extension HomeView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return StringSources.shared.sectiontitles.count
+        return StringSources.shared.sectionTitles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = sectionsTableView.dequeueReusableCell(withIdentifier: StringSources.shared.sectionsTableViewKey, for: indexPath) as? SectionViewCell else {
             return UITableViewCell()
         }
-        cell.setUpCell(title: StringSources.shared.sectiontitles[indexPath.row],
+        cell.setUpCell(title: StringSources.shared.sectionTitles[indexPath.row],
                        backgroundName: StringSources.shared.pokemonBackground[indexPath.row])
         return cell
     }
@@ -70,6 +71,5 @@ extension HomeView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         networkManager.requestGetAPI(urlPath: StringSources.shared.sectionsPathArray[indexPath.row],
                                      indexSection: indexPath.row)
-        
     }
 }

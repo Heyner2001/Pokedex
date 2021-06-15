@@ -47,8 +47,8 @@ enum FontSize: CGFloat {
 enum FontWeight: String {
     case bold = "AmericanTypewriter-Bold"
     case extraBold = "AmericanTypewriter-ExtraBold"
-    case medium = "AmericanTypewriter-Medium"
-    case regular = "AmericanTypewriter-Regular"
+    case medium = "AmericanTypewriter-Semibold"
+    case regular = "AmericanTypewriter"
 }
 
 

@@ -39,10 +39,34 @@ class NetworkManager {
                         break
                     default: break
                     }
-                    
-                    
                 } catch { print(error.localizedDescription) }
             }
+            .observe(on: MainScheduler.instance)
+            .do(onDispose:  {
+                var viewController: UIViewController? = nil
+                
+                switch indexSection {
+                case 0:
+                    viewController = pokemonListViewController
+                    break
+                case 1:
+                    //            viewController = regionsListViewController
+                    break
+                case 2:
+                    //            viewController = berriesListViewController
+                    break
+                case 3:
+                    //            viewController = skillsListViewController
+                    break
+                case 4:
+                    //            viewController = pokeballsListViewController
+                    break
+                default: break
+                }
+                
+                guard let vc = viewController else { return }
+                globalNavigationController?.pushViewController(vc, animated: true)
+            })
             .subscribe(onCompleted: {})
             .disposed(by: disposeBag)
     }
