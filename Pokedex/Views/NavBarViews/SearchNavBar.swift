@@ -74,6 +74,9 @@ class SearchNavBar: UIView {
     }
     
     @objc private func backButtonAction() {
+        let pokemonSection = pokemonListViewController.pokemonsSectionView
+        pokemonSection.volatilPokemonsData = allPokemons?.results
+        pokemonSection.pokemonsCollectionView.reloadData()
         backButtonDelegate?.backButtonAction()
     }
     
@@ -81,6 +84,7 @@ class SearchNavBar: UIView {
         let pokemonSection = pokemonListViewController.pokemonsSectionView
         guard textField.text != "" else {
             pokemonSection.volatilPokemonsData = allPokemons?.results
+            pokemonSection.pokemonsCollectionView.reloadData()
             return
         }
         pokemonSection.volatilPokemonsData = allPokemons?.results.filter({ $0.name.lowercased().contains(textField.text?.lowercased() ?? "") })
